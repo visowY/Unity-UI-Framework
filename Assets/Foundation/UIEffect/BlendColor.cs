@@ -15,7 +15,7 @@ namespace UiEffect
 {
     [AddComponentMenu ("UI/Effects/Blend Color")]
     [RequireComponent (typeof (Graphic))]
-    public class BlendColor : BaseVertexEffect
+    public class BlendColor : BaseMeshEffect
     {
         public enum BLEND_MODE
         {
@@ -30,7 +30,7 @@ namespace UiEffect
 
         Graphic graphic;
 
-        public override void ModifyVertices (List<UIVertex> vList)
+        public  void ModifyVertices (List<UIVertex> vList)
         {
             if (IsActive () == false || vList == null || vList.Count == 0) {
                 return;
@@ -70,6 +70,11 @@ namespace UiEffect
             if (graphic != null) {
                 graphic.SetVerticesDirty ();
             }
+        }
+
+        public override void ModifyMesh(VertexHelper vh)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace UiEffect
 {
     [AddComponentMenu ("UI/Effects/Gradient Color")]
     [RequireComponent (typeof (Graphic))]
-    public class GradientColor : BaseVertexEffect
+    public class GradientColor : BaseMeshEffect
     {
         public enum DIRECTION
         {
@@ -31,7 +31,7 @@ namespace UiEffect
 
         Graphic graphic;
 
-        public override void ModifyVertices (List<UIVertex> vList)
+        public  void ModifyVertices (List<UIVertex> vList)
         {
             if (IsActive () == false || vList == null || vList.Count == 0) {
                 return;
@@ -81,6 +81,11 @@ namespace UiEffect
             if (graphic != null) {
                 graphic.SetVerticesDirty ();
             }
+        }
+
+        public override void ModifyMesh(VertexHelper vh)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
